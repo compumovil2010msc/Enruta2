@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Enrutados</string>
+    <string name="user_name">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="forgot_password">He olvidado mi contraseña</string>
+    <string name="login">Inicio</string>
 </resources>

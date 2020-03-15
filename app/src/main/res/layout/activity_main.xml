@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackgroundColor"
+    android:gravity="center"
+    android:padding="8dp"
     tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/username"
+            android:textAlignment="center"
+            android:textColorHint="@color/contrastColor"
+            android:textColor="@color/strongContrastColor"
+            android:backgroundTint="@color/strongContrastColor"
+            android:inputType="textPersonName"
+            android:hint="@string/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/password"
+            android:textAlignment="center"
+            android:textColorHint="@color/contrastColor"
+            android:textColor="@color/strongContrastColor"
+            android:backgroundTint="@color/strongContrastColor"
+            android:inputType="textPassword"
+            android:hint="@string/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/forgot_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00000000"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="@string/forgot_password"
+            android:textColor="@color/strongContrastColor" />
+        <Button
+            android:id="@+id/login"
+            android:textColor="@color/strongContrastColor"
+            android:backgroundTint="@color/orangeButton"
+            android:layout_marginTop="40dp"
+            android:text="@string/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>
