@@ -4,4 +4,5 @@
     <string name="password">Contraseña</string>
     <string name="forgot_password">He olvidado mi contraseña</string>
     <string name="login">Inicio</string>
+    <string name="change_password">Cambio de contraseña</string>
 </resources>
