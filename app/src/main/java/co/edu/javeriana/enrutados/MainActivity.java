@@ -15,11 +15,14 @@ public class MainActivity extends AppCompatActivity {
 
     EditText username, password;
     Button forgotPassword, login;
+    SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sharedPref = getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         //Inflate
         username = (EditText) findViewById(R.id.username);
@@ -52,27 +55,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        String user = sharedPref.getString(getString(R.string.preference_user_key), null);
+        if (user != null && !user.isEmpty()) {
+            Intent intent = new Intent(this, DrawerActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void validateUser (String user, String pass) {
-        SharedPreferences sharedPref = getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.preference_user_key), user);
         if (user.equals("coord")) {
-            editor.putString(getString(R.string.preference_user_key), user);
             editor.putString(getString(R.string.preference_acc_key), getString(R.string.preference_acc_coord));
-            editor.apply();
-            Intent intent = new Intent(this, DrawerActivity.class);
-            startActivity(intent);
-        } else if (user.equals("tech")) {
-            editor.putString(getString(R.string.preference_user_key), user);
-            editor.putString(getString(R.string.preference_acc_key), getString(R.string.preference_acc_tech));
-            editor.apply();
-            Intent intent = new Intent(this, DrawerActivity.class);
-            startActivity(intent);
         } else {
-            Toast.makeText(this, R.string.error_incorrect_login, Toast.LENGTH_SHORT).show();
+            editor.putString(getString(R.string.preference_acc_key), getString(R.string.preference_acc_tech));
         }
+        editor.commit();
+        Intent intent = new Intent(this, DrawerActivity.class);
+        startActivity(intent);
     }
 }

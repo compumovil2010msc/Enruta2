@@ -40,4 +40,9 @@
         android:name="co.edu.javeriana.enrutados.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <action
+        android:id="@+id/nav_logout"
+        app:destination="@id/nav_home"/>
+
 </navigation>
