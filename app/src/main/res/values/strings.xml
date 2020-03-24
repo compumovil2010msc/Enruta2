@@ -3,6 +3,9 @@
 
     <string name="action_logout">Cerrar Sesión</string>
     <string name="change_password">Cambio de contraseña</string>
+    <string name="contact">Contacto</string>
+    <string name="coordinator">Coordinador</string>
+    <string name="description">Descripción</string>
     <string name="end_date">Fecha de inicio: %s</string>
     <string name="error_empty_field">El campo no puede estar vacío</string>
     <string name="error_incorrect_login">Usuario o contraseña incorrectos</string>
@@ -12,6 +15,7 @@
     <string name="menu_home">Inicio</string>
     <string name="menu_transportation">Transporte</string>
     <string name="password">Contraseña</string>
+    <string name="point_of_service">Punto</string>
     <string name="preference_acc_key">USER_KEY</string>
     <string name="preference_file_key">SHARED_KEY</string>
     <string name="preference_user_key">USER_KEY</string>
@@ -19,6 +23,7 @@
     <string name="preference_acc_tech">TECHNICIAN</string>
     <string name="route_condinator">Coordinador de la ruta: %s</string>
     <string name="start_date">Fecha de finalización: %s</string>
+    <string name="status">Estado</string>
     <string name="tab_evidences">Evidencias</string>
     <string name="tab_information">Información</string>
     <string name="tab_requests">Solicitudes</string>
@@ -34,6 +39,4 @@
 
     <string name="home_second">Home Second</string>
     <string name="title_activity_tabbed">TabbedActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
 </resources>
