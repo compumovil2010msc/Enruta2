@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="4dp">
+
+    <ImageView
+        android:src="@drawable/map_sample"
+        android:layout_width="110dp"
+        android:layout_height="110dp"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingHorizontal="8dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/task_title"
+            android:text="Puerto Claver"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/task_detail"
+            android:text="Instalación de punto de red y mantenimiento preventivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/done_status"
+            android:layout_gravity="end"
+            android:tint="@color/negative_color"
+            android:src="@drawable/ic_cancel_black_24dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
+    </LinearLayout>
+
+</LinearLayout>
