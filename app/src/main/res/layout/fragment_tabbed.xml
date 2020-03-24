@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context=".ui.main.PlaceholderFragment">
+    <LinearLayout
+        android:id="@+id/info_segment"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:text="@string/point_of_service"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@color/mainBackgroundColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Puerto Claver"
+            android:background="@color/soft_grey"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="@string/status"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@color/mainBackgroundColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Activo"
+            android:background="@color/soft_grey"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="@string/contact"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@color/mainBackgroundColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Jane Doe"
+            android:background="@color/soft_grey"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="@string/coordinator"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@color/mainBackgroundColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Jhon Foe"
+            android:background="@color/soft_grey"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="@string/description"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@color/mainBackgroundColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Instalación de punto de red y mantenimiento preventivo de los equipos de computo. Se deben recoger los equipos de telecomunicaciones (antenas, amplificadores, enrutadores) e inventariarlos. Entregar al contacto el nuevo formulario de solicitud y el contrato."
+            android:background="@color/soft_grey"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

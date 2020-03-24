@@ -13,9 +13,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".TabbedActivity"
+            android:label="@string/title_activity_tabbed"
+            android:parentActivityName=".DrawerActivity"
+            android:theme="@style/AppTheme.NoActionBarWithStatus" />
+        <activity
             android:name=".DrawerActivity"
             android:label="@string/title_activity_drawer"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PasswordRecoveryActivity"
             android:label="@string/change_password"
