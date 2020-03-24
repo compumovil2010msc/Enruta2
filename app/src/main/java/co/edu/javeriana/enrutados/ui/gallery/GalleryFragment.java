@@ -57,5 +57,6 @@ public class GalleryFragment extends Fragment {
         alerts.add(new Alert(true, "Coordinador", "Ya te aprobé el punto."));
         alerts.add(new Alert(false, "Ramón", "Gracias, ya estoy terminando aquí."));
         alerts.add(new Alert(true, "Coordinador", "Cualquier cosa me avisdas, vale?"));
+        alertAdapter.notifyDataSetChanged();
     }
 }
