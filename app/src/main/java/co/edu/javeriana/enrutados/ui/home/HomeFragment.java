@@ -59,5 +59,7 @@ public class HomeFragment extends Fragment {
         tasks.add(new Task("Cuturú", "Reparación de teléfonos satelitales", false));
         tasks.add(new Task("Palanca", "Insertar caja de energía", true));
         tasks.add(new Task("Colorado", "Instalación de punto de red y mantenimiento preventivo", true));
+
+        taskAdapter.notifyDataSetChanged();
     }
 }

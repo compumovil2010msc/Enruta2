@@ -15,6 +15,7 @@
         <activity
             android:name=".TabbedActivity"
             android:label="@string/title_activity_tabbed"
+            android:parentActivityName=".DrawerActivity"
             android:theme="@style/AppTheme.NoActionBarWithStatus" />
         <activity
             android:name=".DrawerActivity"
