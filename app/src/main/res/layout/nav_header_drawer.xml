@@ -20,7 +20,7 @@
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:scaleType="centerInside"
-        android:backgroundTint="#00000000"
+        android:backgroundTint="@color/transparent"
         app:srcCompat="@drawable/profile_picture" />
 
     <ImageView
