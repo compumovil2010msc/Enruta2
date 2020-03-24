@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import co.edu.javeriana.enrutados.R;
+import co.edu.javeriana.enrutados.TabbedActivity;
 import co.edu.javeriana.enrutados.model.Task;
 
 public class TaskAdapter extends RecyclerView.Adapter <TaskAdapter.MyViewHolder>{
@@ -40,6 +41,8 @@ public class TaskAdapter extends RecyclerView.Adapter <TaskAdapter.MyViewHolder>
 
     void startTaskActivity(int i) {
         //TODO: Add tab activity
+        Intent intent = new Intent(context, TabbedActivity.class);
+        context.startActivity(intent);
 //        Intent intent = new Intent(context, DetailActivity.class);
 //        intent.putExtra("NAME", products.get(i).getName());
 //        intent.putExtra("DESCRIPTION", products.get(i).getDescripcion());
