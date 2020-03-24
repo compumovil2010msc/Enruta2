@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Enruta2</string>
+
+    <string name="action_logout">Cerrar Sesión</string>
     <string name="change_password">Cambio de contraseña</string>
     <string name="error_empty_field">El campo no puede estar vacío</string>
     <string name="error_incorrect_login">Usuario o contraseña incorrectos</string>
