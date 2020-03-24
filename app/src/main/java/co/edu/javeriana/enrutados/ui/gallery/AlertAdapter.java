@@ -31,7 +31,7 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
         }
     }
 
-    public AlertAdapter(List<Alert> alerts, Context context) {
+    public AlertAdapter(Context context, List<Alert> alerts) {
         this.alerts = alerts;
         this.context = context;
     }
@@ -73,8 +73,5 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
     public int getItemCount() {
         return alerts.size();
     }
-
-
-
 
 }
