@@ -7,7 +7,9 @@
     <string name="error_incorrect_login">Usuario o contraseña incorrectos</string>
     <string name="forgot_password">He olvidado mi contraseña</string>
     <string name="login">Inicio</string>
-    <string name="menu_logout">Cerrar Sesión</string>
+    <string name="menu_alerts">Alertas</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_transportation">Transporte</string>
     <string name="password">Contraseña</string>
     <string name="preference_acc_key">USER_KEY</string>
     <string name="preference_file_key">SHARED_KEY</string>
@@ -23,10 +25,6 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
 
     <string name="home_second">Home Second</string>
 </resources>
