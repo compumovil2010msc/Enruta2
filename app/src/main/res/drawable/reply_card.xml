@@ -5,8 +5,5 @@
         android:color="@color/alert_background" />
 
     <solid android:color="@color/alert_background" />
-
-
-
     <corners android:radius="5dp" />
 </shape>

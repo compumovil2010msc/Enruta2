@@ -14,5 +14,8 @@
     <color name="soft_grey">#C4C4C4</color>
     <color name="alert_background">#40C4C4C4</color>
     <color name="reply_party">#FFB300</color>
+    <color name="input_hint">#c4c0bd</color>
+    <color name="send_alert_background">#405171C9</color>
+
 
 </resources>

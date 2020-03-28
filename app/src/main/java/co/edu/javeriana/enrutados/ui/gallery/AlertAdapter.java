@@ -21,16 +21,19 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView replyName, replyText, messageText;
-        LinearLayout left,right;
+        TextView replyName, replyText, messageName, messageText;
+        LinearLayout left,right,cardLeft,cardRight;
 
         public ViewHolder(@NonNull View v) {
             super(v);
             replyName = v.findViewById(R.id.reply_name);
             replyText = v.findViewById(R.id.reply_text);
+            messageName = v.findViewById(R.id.message_name);
             messageText = v.findViewById(R.id.message_text);
             left = v.findViewById(R.id.layout_left);
             right = v.findViewById(R.id.layout_right);
+            cardLeft = v.findViewById(R.id.card_left);
+            cardRight = v.findViewById(R.id.card_right);
         }
     }
 
@@ -51,22 +54,41 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
         final int position = i;
         Alert alert = alerts.get(i);
 
+        LinearLayout.LayoutParams moreWeight = new LinearLayout.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                5.0f
+        );
+
+        LinearLayout.LayoutParams lessWeight = new LinearLayout.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1.0f
+        );
+
+
         if (alert.isReply()) {
             viewHolder.replyName.setText(alert.getName());
             viewHolder.replyText.setText(alert.getText());
 
             viewHolder.replyName.setVisibility(View.VISIBLE);
             viewHolder.replyText.setVisibility(View.VISIBLE);
-            viewHolder.right.setBackground(null);
-            viewHolder.messageText.setVisibility(View.INVISIBLE);
+            viewHolder.messageName.setVisibility(View.INVISIBLE);
+            viewHolder.messageText.setVisibility(View.GONE);
+            viewHolder.cardRight.setBackground(null);
+            viewHolder.left.setLayoutParams(moreWeight);
+            viewHolder.right.setLayoutParams(lessWeight);
         } else {
 
             viewHolder.messageText.setText(alert.getText());
 
             viewHolder.replyName.setVisibility(View.INVISIBLE);
-            viewHolder.replyText.setVisibility(View.INVISIBLE);
-            viewHolder.left.setBackground(null);
+            viewHolder.replyText.setVisibility(View.GONE);
+            viewHolder.messageName.setVisibility(View.GONE);
             viewHolder.messageText.setVisibility(View.VISIBLE);
+            viewHolder.cardLeft.setBackground(null);
+            viewHolder.left.setLayoutParams(lessWeight);
+            viewHolder.right.setLayoutParams(moreWeight);
         }
     }
 
