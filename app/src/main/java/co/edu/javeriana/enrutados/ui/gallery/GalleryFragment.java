@@ -52,11 +52,11 @@ public class GalleryFragment extends Fragment {
         alertAdapter = new AlertAdapter(v.getContext(), alerts);
         listOfAlerts.setAdapter(alertAdapter);
 
-        alerts.add(new Alert(true, "Coordinador", "Hola Ramón"));
-        alerts.add(new Alert(false, "Ramón", "Hola."));
-        alerts.add(new Alert(true, "Coordinador", "Ya te aprobé el punto."));
-        alerts.add(new Alert(false, "Ramón", "Gracias, ya estoy terminando aquí."));
-        alerts.add(new Alert(true, "Coordinador", "Cualquier cosa me avisdas, vale?"));
+        alerts.add(new Alert(true, "Coordinador", "Hola Ramón", "8:31"));
+        alerts.add(new Alert(false, "Ramón", "Hola.", "8:37"));
+        alerts.add(new Alert(true, "Coordinador", "Ya te aprobé el punto.", "8:45"));
+        alerts.add(new Alert(false, "Ramón", "Gracias, ya estoy terminando aquí.", "8:50"));
+        alerts.add(new Alert(true, "Coordinador", "Cualquier cosa me avisdas, vale?", "8:51"));
         alertAdapter.notifyDataSetChanged();
     }
 }

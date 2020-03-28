@@ -41,6 +41,13 @@
                 android:visibility="visible"
                 android:text="Respuesta del coordinador"
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reply_time"
+                android:layout_gravity="right"
+                android:text="8:30"
+                />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -79,6 +86,13 @@
                 android:visibility="visible"
                 android:padding="4dp"
                 android:text="Mi respuesta no necesita nombre" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/message_time"
+                android:layout_gravity="right"
+                android:text="8:30"
+                />
         </LinearLayout>
     </LinearLayout>
 

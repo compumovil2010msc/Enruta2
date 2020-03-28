@@ -21,15 +21,17 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView replyName, replyText, messageName, messageText;
+        TextView replyName, replyText, messageName, messageText, messageTime, replyTime;
         LinearLayout left,right,cardLeft,cardRight;
 
         public ViewHolder(@NonNull View v) {
             super(v);
             replyName = v.findViewById(R.id.reply_name);
             replyText = v.findViewById(R.id.reply_text);
+            replyTime = v.findViewById(R.id.reply_time);
             messageName = v.findViewById(R.id.message_name);
             messageText = v.findViewById(R.id.message_text);
+            messageTime = v.findViewById(R.id.message_time);
             left = v.findViewById(R.id.layout_left);
             right = v.findViewById(R.id.layout_right);
             cardLeft = v.findViewById(R.id.card_left);
@@ -70,22 +72,26 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
         if (alert.isReply()) {
             viewHolder.replyName.setText(alert.getName());
             viewHolder.replyText.setText(alert.getText());
-
+            viewHolder.replyTime.setText(alert.getTime());
             viewHolder.replyName.setVisibility(View.VISIBLE);
             viewHolder.replyText.setVisibility(View.VISIBLE);
+            viewHolder.replyTime.setVisibility(View.VISIBLE);
             viewHolder.messageName.setVisibility(View.INVISIBLE);
             viewHolder.messageText.setVisibility(View.GONE);
+            viewHolder.messageTime.setVisibility(View.GONE);
             viewHolder.cardRight.setBackground(null);
             viewHolder.left.setLayoutParams(moreWeight);
             viewHolder.right.setLayoutParams(lessWeight);
         } else {
 
             viewHolder.messageText.setText(alert.getText());
-
+            viewHolder.messageTime.setText(alert.getTime());
             viewHolder.replyName.setVisibility(View.INVISIBLE);
             viewHolder.replyText.setVisibility(View.GONE);
+            viewHolder.replyTime.setVisibility(View.GONE);
             viewHolder.messageName.setVisibility(View.GONE);
             viewHolder.messageText.setVisibility(View.VISIBLE);
+            viewHolder.messageTime.setVisibility(View.VISIBLE);
             viewHolder.cardLeft.setBackground(null);
             viewHolder.left.setLayoutParams(lessWeight);
             viewHolder.right.setLayoutParams(moreWeight);
