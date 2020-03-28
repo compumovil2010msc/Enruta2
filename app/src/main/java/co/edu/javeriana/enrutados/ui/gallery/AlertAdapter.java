@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,14 +21,16 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView replyName, messageName, replyText, messageText;
+        TextView replyName, replyText, messageText;
+        LinearLayout left,right;
 
         public ViewHolder(@NonNull View v) {
             super(v);
             replyName = v.findViewById(R.id.reply_name);
-            messageName = v.findViewById(R.id.message_name);
             replyText = v.findViewById(R.id.reply_text);
             messageText = v.findViewById(R.id.message_text);
+            left = v.findViewById(R.id.layout_left);
+            right = v.findViewById(R.id.layout_right);
         }
     }
 
@@ -54,17 +57,15 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
             viewHolder.replyName.setVisibility(View.VISIBLE);
             viewHolder.replyText.setVisibility(View.VISIBLE);
-
-            viewHolder.messageName.setVisibility(View.INVISIBLE);
+            viewHolder.right.setBackground(null);
             viewHolder.messageText.setVisibility(View.INVISIBLE);
         } else {
-            viewHolder.messageName.setText(alert.getName());
+
             viewHolder.messageText.setText(alert.getText());
 
             viewHolder.replyName.setVisibility(View.INVISIBLE);
             viewHolder.replyText.setVisibility(View.INVISIBLE);
-
-            viewHolder.messageName.setVisibility(View.VISIBLE);
+            viewHolder.left.setBackground(null);
             viewHolder.messageText.setVisibility(View.VISIBLE);
         }
     }

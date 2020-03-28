@@ -12,5 +12,7 @@
     <color name="negative_color">#da2244</color>
     <color name="positive_color">#00db6f</color>
     <color name="soft_grey">#C4C4C4</color>
+    <color name="alert_background">#40C4C4C4</color>
+    <color name="reply_party">#FFB300</color>
 
 </resources>
