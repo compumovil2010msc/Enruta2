@@ -16,6 +16,8 @@
     <color name="reply_party">#FFB300</color>
     <color name="input_hint">#c4c0bd</color>
     <color name="send_alert_background">#405171C9</color>
+    <color name="event_text_color">#5171C9</color>
+    <color name="event_text_background">#26FFB300</color>
 
 
 </resources>
