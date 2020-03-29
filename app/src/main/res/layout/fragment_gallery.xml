@@ -20,7 +20,7 @@
         android:orientation="horizontal"
         >
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/edit_text_message"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -33,6 +33,7 @@
             android:layout_height="50dp"
             android:background="@drawable/input_circle_normal"
             android:src="@drawable/input_send"
+            android:id="@+id/button_send_message"
             />
     </LinearLayout>
 

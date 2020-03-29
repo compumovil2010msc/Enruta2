@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1082460432871",
+    "firebase_url": "https://enruta2-ef2bb.firebaseio.com",
+    "project_id": "enruta2-ef2bb",
+    "storage_bucket": "enruta2-ef2bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082460432871:android:0522e8a9e3605721513542",
+        "android_client_info": {
+          "package_name": "co.edu.javeriana.enrutados"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082460432871-qcfpnd57forjitvi10km5a2mijb9s323.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9VfyrW6npp99Ij-gwGIyu_nBdObqJmHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1082460432871-qcfpnd57forjitvi10km5a2mijb9s323.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

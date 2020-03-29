@@ -102,6 +102,7 @@ public class AlertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public AlertAdapter(Context context, List<Alert> alerts) {
         this.alerts = alerts;
         this.context = context;
+
     }
 
     @NonNull
@@ -120,12 +121,18 @@ public class AlertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+        /*if (position == 0) {
+
+        } else if (position > 0) {}*/
+
         if (getItemViewType(position) == TYPE_MESSAGE) {
             ((MessageViewHolder) viewHolder).setMessageDetails(alerts.get(position));
         } else if(getItemViewType(position) == TYPE_EVENT) {
             ((EventViewHolder) viewHolder).setEventDetails(alerts.get(position));
         }
     }
+
+
 
     @Override
     public int getItemCount() {
