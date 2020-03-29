@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 import co.edu.javeriana.enrutados.R;
 import co.edu.javeriana.enrutados.model.Alert;
@@ -18,8 +19,7 @@ public class AlertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private static int TYPE_MESSAGE = 1;
     private static int TYPE_EVENT = 2;
-
-    private List<Alert> alerts;
+    private List<Alert> alerts = new ArrayList<>();
     private Context context;
 
     public static class MessageViewHolder extends RecyclerView.ViewHolder {
@@ -99,10 +99,14 @@ public class AlertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    public AlertAdapter(Context context, List<Alert> alerts) {
-        this.alerts = alerts;
+    public AlertAdapter(Context context) {
         this.context = context;
+    }
 
+
+    public void addAlert(Alert alert) {
+        alerts.add(alert);
+        notifyItemInserted(alerts.size());
     }
 
     @NonNull
@@ -121,18 +125,12 @@ public class AlertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        /*if (position == 0) {
-
-        } else if (position > 0) {}*/
-
         if (getItemViewType(position) == TYPE_MESSAGE) {
             ((MessageViewHolder) viewHolder).setMessageDetails(alerts.get(position));
         } else if(getItemViewType(position) == TYPE_EVENT) {
             ((EventViewHolder) viewHolder).setEventDetails(alerts.get(position));
         }
     }
-
-
 
     @Override
     public int getItemCount() {
