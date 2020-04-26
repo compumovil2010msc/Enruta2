@@ -4,68 +4,131 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 import co.edu.javeriana.enrutados.R;
 import co.edu.javeriana.enrutados.model.Alert;
 
-public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> {
+public class AlertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Alert> alerts;
+    private static int TYPE_MESSAGE = 1;
+    private static int TYPE_EVENT = 2;
+    private List<Alert> alerts = new ArrayList<>();
     private Context context;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class MessageViewHolder extends RecyclerView.ViewHolder {
 
-        TextView replyName, messageName, replyText, messageText;
+        TextView replyName, replyText, messageName, messageText, messageTime, replyTime;
+        LinearLayout left,right,cardLeft,cardRight;
 
-        public ViewHolder(@NonNull View v) {
+        public MessageViewHolder(@NonNull View v) {
             super(v);
             replyName = v.findViewById(R.id.reply_name);
-            messageName = v.findViewById(R.id.message_name);
             replyText = v.findViewById(R.id.reply_text);
+            replyTime = v.findViewById(R.id.reply_time);
+            messageName = v.findViewById(R.id.message_name);
             messageText = v.findViewById(R.id.message_text);
+            messageTime = v.findViewById(R.id.message_time);
+            left = v.findViewById(R.id.layout_left);
+            right = v.findViewById(R.id.layout_right);
+            cardLeft = v.findViewById(R.id.card_left);
+            cardRight = v.findViewById(R.id.card_right);
+        }
+
+        private void setMessageDetails(Alert alert) {
+            LinearLayout.LayoutParams moreWeight = new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    5.0f
+            );
+
+            LinearLayout.LayoutParams lessWeight = new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    1.0f
+            );
+
+            if (alert.isReply()) {
+                replyName.setText(alert.getName());
+                replyText.setText(alert.getText());
+                replyTime.setText(alert.getTime());
+                replyName.setVisibility(View.VISIBLE);
+                replyText.setVisibility(View.VISIBLE);
+                replyTime.setVisibility(View.VISIBLE);
+                messageName.setVisibility(View.INVISIBLE);
+                messageText.setVisibility(View.GONE);
+                messageTime.setVisibility(View.GONE);
+                cardRight.setBackground(null);
+                left.setLayoutParams(moreWeight);
+                right.setLayoutParams(lessWeight);
+            } else {
+
+                messageText.setText(alert.getText());
+                messageTime.setText(alert.getTime());
+                replyName.setVisibility(View.INVISIBLE);
+                replyText.setVisibility(View.GONE);
+                replyTime.setVisibility(View.GONE);
+                messageName.setVisibility(View.GONE);
+                messageText.setVisibility(View.VISIBLE);
+                messageTime.setVisibility(View.VISIBLE);
+                cardLeft.setBackground(null);
+                left.setLayoutParams(lessWeight);
+                right.setLayoutParams(moreWeight);
+            }
         }
     }
 
-    public AlertAdapter(Context context, List<Alert> alerts) {
-        this.alerts = alerts;
+    public static class EventViewHolder extends RecyclerView.ViewHolder {
+        TextView eventText, eventTime;
+
+        EventViewHolder(@NonNull View itemView) {
+            super(itemView);
+            eventText = itemView.findViewById(R.id.event_text);
+            eventTime = itemView.findViewById(R.id.event_time);
+        }
+
+        public void setEventDetails(Alert alert) {
+            eventText.setText(alert.getText());
+            eventTime.setText(alert.getTime());
+        }
+    }
+
+    public AlertAdapter(Context context) {
         this.context = context;
+    }
+
+
+    public void addAlert(Alert alert) {
+        alerts.add(alert);
+        notifyItemInserted(alerts.size());
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(context).inflate(R.layout.alert_item, viewGroup, false);
-        return new ViewHolder(v);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View view;
+
+        if (viewType == TYPE_MESSAGE) {
+            view = LayoutInflater.from(context).inflate(R.layout.alert_item, viewGroup, false);
+            return new MessageViewHolder(view);
+        } else {
+            view = LayoutInflater.from(context).inflate(R.layout.event_item, viewGroup, false);
+            return new EventViewHolder(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        final int position = i;
-        Alert alert = alerts.get(i);
-
-        if (alert.isReply()) {
-            viewHolder.replyName.setText(alert.getName());
-            viewHolder.replyText.setText(alert.getText());
-
-            viewHolder.replyName.setVisibility(View.VISIBLE);
-            viewHolder.replyText.setVisibility(View.VISIBLE);
-
-            viewHolder.messageName.setVisibility(View.INVISIBLE);
-            viewHolder.messageText.setVisibility(View.INVISIBLE);
-        } else {
-            viewHolder.messageName.setText(alert.getName());
-            viewHolder.messageText.setText(alert.getText());
-
-            viewHolder.replyName.setVisibility(View.INVISIBLE);
-            viewHolder.replyText.setVisibility(View.INVISIBLE);
-
-            viewHolder.messageName.setVisibility(View.VISIBLE);
-            viewHolder.messageText.setVisibility(View.VISIBLE);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+        if (getItemViewType(position) == TYPE_MESSAGE) {
+            ((MessageViewHolder) viewHolder).setMessageDetails(alerts.get(position));
+        } else if(getItemViewType(position) == TYPE_EVENT) {
+            ((EventViewHolder) viewHolder).setEventDetails(alerts.get(position));
         }
     }
 
@@ -74,4 +137,14 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
         return alerts.size();
     }
 
+    @Override
+    public int getItemViewType(int i) {
+        Alert alert = alerts.get(i);
+
+        if (alert.getAlertType() == Alert.MESSAGE) {
+            return TYPE_MESSAGE;
+        } else {
+            return TYPE_EVENT;
+        }
+    }
 }

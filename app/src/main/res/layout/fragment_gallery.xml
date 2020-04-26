@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.gallery.GalleryFragment">
+    tools:context=".ui.gallery.AlertsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_of_alerts"
@@ -13,13 +13,29 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"/>
-    <EditText
-        android:id="@+id/editText2"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.1"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="" />
+        android:orientation="horizontal"
+        >
+        <EditText
+            android:id="@+id/edit_text_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_weight="1"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/input_hint"
+            android:hint="Escribe un mensaje aquí" />
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/input_circle_normal"
+            android:src="@drawable/input_send"
+            android:id="@+id/button_send_message"
+            />
+    </LinearLayout>
+
 
 </LinearLayout>
