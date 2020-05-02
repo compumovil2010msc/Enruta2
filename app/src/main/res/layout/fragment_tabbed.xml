@@ -3,82 +3,167 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="8dp"
-    tools:context=".ui.main.PlaceholderFragment">
-    <LinearLayout
+    tools:context=".ui.tabs.PlaceholderFragment">
+    <ScrollView
         android:id="@+id/info_segment"
         android:visibility="gone"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:text="@string/point_of_service"
-            android:textStyle="bold"
-            android:padding="8dp"
-            android:textColor="@color/mainBackgroundColor"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="Puerto Claver"
-            android:background="@color/soft_grey"
-            android:padding="8dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="@string/point_of_service"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/mainBackgroundColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Puerto Claver"
+                android:background="@color/soft_grey"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="@string/status"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/mainBackgroundColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Activo"
+                android:background="@color/soft_grey"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="@string/contact"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/mainBackgroundColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Jane Doe"
+                android:background="@color/soft_grey"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="@string/coordinator"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/mainBackgroundColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Jhon Foe"
+                android:background="@color/soft_grey"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="@string/description"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/mainBackgroundColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Instalación de punto de red y mantenimiento preventivo de los equipos de
+            computo. Se deben recoger los equipos de telecomunicaciones (antenas, amplificadores,
+            enrutadores) e inventariarlos. Entregar al contacto el nuevo formulario de solicitud y
+            el contrato.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc malesuada justo tellus,
+            at interdum nisl placerat non. Praesent nec lacus mollis, tincidunt libero sed,
+            efficitur magna. Proin id massa odio. Aenean tortor magna, hendrerit sed metus a,
+            cursus ornare dolor. Phasellus a gravida ante. Ut tellus tortor, fringilla quis blandit
+            non, porta tincidunt nunc. Morbi lacinia purus sagittis, congue orci tempus, tincidunt
+            dui. Phasellus finibus non turpis vel lacinia. Etiam a metus ac odio pretium lacinia
+            porta ut sapien.
+            Ut consectetur erat in commodo aliquet. Nam vitae ullamcorper purus. Vivamus porta
+            pulvinar urna, eu commodo libero gravida vel. Nam pulvinar id nisi in dignissim. Ut
+            pellentesque suscipit lorem sit amet aliquet. In condimentum euismod ligula et rutrum.
+            Vestibulum id enim sem. Vestibulum aliquet lobortis posuere. Proin felis velit,
+            molestie in consequat id, lobortis ut lectus. Maecenas lectus nulla, finibus non
+            rhoncus eu, viverra quis est. Nunc eros eros, viverra at sapien at, pharetra auctor
+            lacus. Nulla at neque vitae justo feugiat volutpat."
+                android:background="@color/soft_grey"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
+    <FrameLayout
+        android:id="@+id/evidence_segment"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="@string/point_of_service"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/mainBackgroundColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Puerto Claver"
+                android:background="@color/soft_grey"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="@string/images"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/mainBackgroundColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <GridView
+                android:id="@+id/evidence_images"
+                android:background="@color/soft_grey"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:numColumns="auto_fit"/>
+            <TextView
+                android:text="@string/documents"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/mainBackgroundColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <GridView
+                android:id="@+id/evidence_documents"
+                android:background="@color/soft_grey"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:numColumns="auto_fit"/>
+        </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_evidence"
+            android:layout_gravity="end|bottom"
+            android:backgroundTint="@color/orangeButton"
+            app:borderWidth="0dp"
+            android:src="@drawable/ic_add_black_24dp"
+            android:tint="@color/strongContrastColor"
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <TextView
-            android:text="@string/status"
-            android:textStyle="bold"
-            android:padding="8dp"
-            android:textColor="@color/mainBackgroundColor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="Activo"
-            android:background="@color/soft_grey"
-            android:padding="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="@string/contact"
-            android:textStyle="bold"
-            android:padding="8dp"
-            android:textColor="@color/mainBackgroundColor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="Jane Doe"
-            android:background="@color/soft_grey"
-            android:padding="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="@string/coordinator"
-            android:textStyle="bold"
-            android:padding="8dp"
-            android:textColor="@color/mainBackgroundColor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="Jhon Foe"
-            android:background="@color/soft_grey"
-            android:padding="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="@string/description"
-            android:textStyle="bold"
-            android:padding="8dp"
-            android:textColor="@color/mainBackgroundColor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="Instalación de punto de red y mantenimiento preventivo de los equipos de computo. Se deben recoger los equipos de telecomunicaciones (antenas, amplificadores, enrutadores) e inventariarlos. Entregar al contacto el nuevo formulario de solicitud y el contrato."
-            android:background="@color/soft_grey"
-            android:padding="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
+    </FrameLayout>
 </LinearLayout>
