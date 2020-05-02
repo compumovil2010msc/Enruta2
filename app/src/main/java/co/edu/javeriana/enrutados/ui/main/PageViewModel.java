@@ -1,4 +1,4 @@
-package co.edu.javeriana.enrutados.ui.tabs;
+package co.edu.javeriana.enrutados.ui.main;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;

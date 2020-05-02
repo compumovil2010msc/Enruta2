@@ -1,4 +1,4 @@
-package co.edu.javeriana.enrutados.ui.tabs;
+package co.edu.javeriana.enrutados.ui.main;
 
 import android.content.Context;
 
