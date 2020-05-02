@@ -1,11 +1,12 @@
-package co.edu.javeriana.enrutados.ui.main;
+package co.edu.javeriana.enrutados.ui.tabs;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ScrollView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -48,12 +49,15 @@ public class PlaceholderFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_tabbed, container, false);
-        final LinearLayout infoSegment = root.findViewById(R.id.info_segment);
+        final ScrollView infoSegment = root.findViewById(R.id.info_segment);
+        final FrameLayout evidenceSegment = root.findViewById(R.id.evidence_segment);
         pageViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 if (s.equals("1")) {
                     infoSegment.setVisibility(View.VISIBLE);
+                } else if (s.equals("2")) {
+                    evidenceSegment.setVisibility(View.VISIBLE);
                 }
             }
         });

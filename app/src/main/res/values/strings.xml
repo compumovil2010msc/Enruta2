@@ -39,4 +39,6 @@
 
     <string name="home_second">Home Second</string>
     <string name="title_activity_tabbed">TabbedActivity</string>
+    <string name="images">Imágenes</string>
+    <string name="documents">Documentos</string>
 </resources>
