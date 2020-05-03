@@ -106,9 +106,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser currentUser)
     {
-        //String user = sharedPref.getString(getString(R.string.preference_user_key), null);
-
         if (currentUser != null /*&& user != null && !user.isEmpty()*/) {
+            saveEmailInSharedPreferences();
             Intent intent = new Intent(this, DrawerActivity.class);
             intent.putExtra("user", currentUser.getEmail());
             startActivity(intent);
@@ -118,21 +117,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*
-    private void validateUser (String user, String pass) {
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(getString(R.string.preference_user_key), user);
 
-        if (user.equals("coord")) {
+    private void saveEmailInSharedPreferences() {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.preference_user_key), username.getText().toString());
+
+        /*if (user.equals("coord")) {
             editor.putString(getString(R.string.preference_acc_key), getString(R.string.preference_acc_coord));
         } else {
             editor.putString(getString(R.string.preference_acc_key), getString(R.string.preference_acc_tech));
-        }
+        }*/
 
-        editor.commit();
-        Intent intent = new Intent(this, DrawerActivity.class);
-        startActivity(intent);
-    }*/
+        editor.apply();
+    }
 
     private void signInUser(String email, String password)
     {

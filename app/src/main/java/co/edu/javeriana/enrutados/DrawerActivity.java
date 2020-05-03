@@ -75,7 +75,6 @@ public class DrawerActivity extends AppCompatActivity {
                 // User chose the "Settings" item, show the app settings UI...
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString(getString(R.string.preference_user_key), null);
-                editor.putString(getString(R.string.preference_acc_key), null);
                 editor.commit();
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra("logout", true);
