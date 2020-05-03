@@ -20,7 +20,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.SphericalUtil;
 
 import co.edu.javeriana.enrutados.model.Point;
 import co.edu.javeriana.enrutados.model.Route;
@@ -36,6 +38,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LocationManager locationManager;
     LocationListener locationListener;
     Route activeRoute;
+    Marker userMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +100,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.addMarker(makerOptions);
 
             if (i.equals(0))
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 12));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 10));
 
             i++;
         }
@@ -107,7 +110,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         @Override
         public void onLocationChanged(Location location) {
-            Log.i("Location", location.toString());
+            LatLng userLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+            if (userMarker != null && SphericalUtil.computeDistanceBetween(userMarker.getPosition(), userLatLng) < 500)
+                return;
+
+            if (userMarker != null)
+                userMarker.remove();
+
+            userMarker = mMap.addMarker(new MarkerOptions().position(userLatLng).title("You are here").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
         }
 
         @Override
