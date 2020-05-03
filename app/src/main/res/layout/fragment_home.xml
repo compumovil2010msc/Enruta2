@@ -28,6 +28,7 @@
                 android:textSize="@dimen/h1"
                 android:paddingVertical="16dp"
                 android:layout_width="match_parent"
+                android:id="@+id/route_name"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:text="@string/start_date"
@@ -37,6 +38,7 @@
             <TextView
                 android:text="@string/end_date"
                 android:textAlignment="center"
+                android:id="@+id/label_created_at"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -55,6 +57,7 @@
                 android:tint="@color/orangeButton"
                 android:src="@drawable/ic_map_black_24dp"
                 android:paddingVertical="16dp"
+                android:id="@+id/map_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/transparent"/>

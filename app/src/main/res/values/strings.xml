@@ -41,4 +41,5 @@
     <string name="title_activity_tabbed">TabbedActivity</string>
     <string name="images">Imágenes</string>
     <string name="documents">Documentos</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

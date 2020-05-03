@@ -1,6 +1,8 @@
 package co.edu.javeriana.enrutados.model;
 
-public class Point {
+import java.io.Serializable;
+
+public class Point implements Serializable {
 
     private Long id;
     private String name;

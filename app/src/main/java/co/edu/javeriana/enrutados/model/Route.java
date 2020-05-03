@@ -1,8 +1,9 @@
 package co.edu.javeriana.enrutados.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Route {
+public class Route implements Serializable {
     private Long id;
     private String name;
     private String createdAt;

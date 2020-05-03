@@ -29,7 +29,7 @@ public class PointAdapter extends RecyclerView.Adapter <PointAdapter.MyViewHolde
         public MyViewHolder (View v) {
             super(v);
             pointName = (TextView) v.findViewById(R.id.task_title);
-            pointDescription = (TextView) v.findViewById(R.id.task_title);
+            pointDescription = (TextView) v.findViewById(R.id.task_detail);
             doneStatus = (ImageView) v.findViewById(R.id.done_status);
         }
     }
