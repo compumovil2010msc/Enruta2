@@ -28,4 +28,7 @@ public interface EnrutadosApi {
     @GET("coordinators/{email}/routes")
     Call<List<Route>> getCoordinatorRoutes(@Path("email") String email);
 
+    @GET("technicians/{email}/active-route")
+    Call<Route> getTechnicianActiveRoute(@Path("email") String email);
+
 }

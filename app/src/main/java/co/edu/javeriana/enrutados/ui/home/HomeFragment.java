@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment {
     List <Task> tasks;
     SharedPreferences sharedPref;
     ImageButton mapButton;
-    TextView tvRouteName, tvCreatedAt;
+    TextView tvRouteName, tvCreatedAt, tvFinishedAt, tvCoordinatorEmail;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -72,6 +72,8 @@ public class HomeFragment extends Fragment {
 
         tvRouteName = root.findViewById(R.id.route_name);
         tvCreatedAt = root.findViewById(R.id.label_created_at);
+        tvFinishedAt = root.findViewById(R.id.label_finished_at);
+        tvCoordinatorEmail = root.findViewById(R.id.label_coordinator_email);
 
         linearLayoutInit();
         fetchActiveRoute();
@@ -98,7 +100,7 @@ public class HomeFragment extends Fragment {
         sharedPref = this.getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String email = sharedPref.getString(root.getContext().getString(R.string.preference_user_key), "");
         Log.d(ENRUTADOS_LOG, "User email: " + email);
-        enrutadosApi.getTechnicianRoutes(email).enqueue(new GetTechnicianRoutesHandler());
+        enrutadosApi.getTechnicianActiveRoute(email).enqueue(new GetTechnicianActiveRouteHandler());
     }
 
     private class MapButtonHandler implements View.OnClickListener {
@@ -110,30 +112,31 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    class GetTechnicianRoutesHandler implements Callback<List<Route>> {
+    class GetTechnicianActiveRouteHandler implements Callback<Route> {
         @Override
-        public void onResponse(Call<List<Route>> call, Response<List<Route>> response) {
+        public void onResponse(Call<Route> call, Response<Route> response) {
             if (!response.isSuccessful()) {
                 Log.d(ENRUTADOS_LOG, String.valueOf(response.code()));
                 return;
             }
 
-            List<Route> routes = response.body();
-
-            if (routes.size() > 0) {
-                activeRoute = routes.get(0);
-                displayRouteData();
-            }
+            activeRoute = response.body();
+            displayRouteData();
         }
 
         @Override
-        public void onFailure(Call<List<Route>> call, Throwable t) {
+        public void onFailure(Call<Route> call, Throwable t) {
             Log.d(ENRUTADOS_LOG, t.getMessage());
         }
 
         private void displayRouteData() {
+            String finishedAt = activeRoute.getFinishedAt() != null ? activeRoute.getFinishedAt().substring(0, 10) : "-";
+
             tvRouteName.setText(activeRoute.getName());
             tvCreatedAt.setText(String.format(tvCreatedAt.getText().toString(), activeRoute.getCreatedAt().substring(0, 10)));
+            tvFinishedAt.setText(String.format(tvFinishedAt.getText().toString(), finishedAt));
+            tvCoordinatorEmail.setText(activeRoute.getCoordinatorName());
+
             pointAdapter = new PointAdapter(root.getContext(), activeRoute.getPoints());
             listOfPoints.setAdapter(pointAdapter);
             pointAdapter.notifyDataSetChanged();
