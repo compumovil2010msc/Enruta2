@@ -1,5 +1,6 @@
 package co.edu.javeriana.enrutados.ui.tabs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import co.edu.javeriana.enrutados.AddEvidenceActivity;
 import co.edu.javeriana.enrutados.R;
 
 /**
@@ -49,15 +53,27 @@ public class PlaceholderFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_tabbed, container, false);
+        final FloatingActionButton addEvidence = root.findViewById(R.id.add_evidence);
+        addEvidence.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), AddEvidenceActivity.class);
+                startActivity(intent);
+            }
+        });
+
         final ScrollView infoSegment = root.findViewById(R.id.info_segment);
         final FrameLayout evidenceSegment = root.findViewById(R.id.evidence_segment);
+
         pageViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                if (s.equals("1")) {
-                    infoSegment.setVisibility(View.VISIBLE);
-                } else if (s.equals("2")) {
-                    evidenceSegment.setVisibility(View.VISIBLE);
+                if (s != null) {
+                    if (s.equals("1")) {
+                        infoSegment.setVisibility(View.VISIBLE);
+                    } else if (s.equals("2")) {
+                        evidenceSegment.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         });

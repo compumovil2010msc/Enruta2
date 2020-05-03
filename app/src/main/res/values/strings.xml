@@ -39,7 +39,12 @@
 
     <string name="home_second">Home Second</string>
     <string name="title_activity_tabbed">TabbedActivity</string>
+    <string name="title_add_evidence">Adjuntar evidencia</string>
     <string name="images">Imágenes</string>
     <string name="documents">Documentos</string>
+
     <string name="title_activity_maps">Map</string>
+    <string name="image">Imagen</string>
+    <string name="document">Documento</string>
+    <string name="location">Ubicación</string>
 </resources>

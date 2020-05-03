@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".AddEvidenceActivity">
+
+    <TextView
+        android:text="@string/point_of_service"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:textColor="@color/mainBackgroundColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:text="Puerto Claver"
+        android:background="@color/soft_grey"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"/>
+    <Button
+        android:id="@+id/button_add_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_menu_camera"
+        android:textColor="@color/mainBackgroundColor"
+        android:drawableTint="@color/mainBackgroundColor"
+        android:text="@string/image"/>
+    <Button
+        android:id="@+id/button_add_document"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_insert_drive_file_black_24dp"
+        android:textColor="@color/mainBackgroundColor"
+        android:drawableTint="@color/mainBackgroundColor"
+        android:text="@string/document"/>
+    <Button
+        android:id="@+id/button_add_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_place_black_24dp"
+        android:textColor="@color/mainBackgroundColor"
+        android:drawableTint="@color/mainBackgroundColor"
+        android:text="@string/location"/>
+</LinearLayout>
