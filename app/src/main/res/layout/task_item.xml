@@ -8,6 +8,8 @@
     <ImageView
         android:src="@drawable/map_sample"
         android:layout_width="110dp"
+        android:id="@+id/point_image"
+        android:padding="4dp"
         android:layout_height="110dp"/>
     <LinearLayout
         android:orientation="vertical"

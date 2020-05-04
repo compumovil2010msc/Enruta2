@@ -1,11 +1,39 @@
 package co.edu.javeriana.enrutados.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Route {
+public class Route implements Serializable {
     private Long id;
     private String name;
     private String createdAt;
+    private String finishedAt;
+    private String coordinatorName;
+    private String technicianName;
+
+    public String getFinishedAt() {
+        return finishedAt;
+    }
+
+    public void setFinishedAt(String finishedAt) {
+        this.finishedAt = finishedAt;
+    }
+
+    public String getCoordinatorName() {
+        return coordinatorName;
+    }
+
+    public void setCoordinatorName(String coordinatorName) {
+        this.coordinatorName = coordinatorName;
+    }
+
+    public String getTechnicianName() {
+        return technicianName;
+    }
+
+    public void setTechnicianName(String technicianName) {
+        this.technicianName = technicianName;
+    }
 
     private List<Point> points;
 
