@@ -154,6 +154,20 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
                 android:numColumns="auto_fit"/>
+            <TextView
+                android:text="@string/location"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/mainBackgroundColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/label_curent_location"
+                android:text="@string/location_lat_long"
+                android:background="@color/soft_grey"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_evidence"

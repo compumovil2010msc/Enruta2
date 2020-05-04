@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String ENRUTADOS_LOG = ">enrutados";
+    public static final String ENRUTADOS_LOG = ">enrutados";
     private FirebaseAuth mAuth;
 
     EditText username, password;
