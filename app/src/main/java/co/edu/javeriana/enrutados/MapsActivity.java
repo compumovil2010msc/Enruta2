@@ -1,13 +1,19 @@
 package co.edu.javeriana.enrutados;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Service;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.hardware.SensorEvent;
+import android.hardware.SensorManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEventListener;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -20,6 +26,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.SphericalUtil;
@@ -29,16 +36,23 @@ import co.edu.javeriana.enrutados.model.Route;
 
 import static co.edu.javeriana.enrutados.Utils.*;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener {
 
     public static final int REQUEST_CODE = 1;
     public static final String REQUEST_REASON = "Location required in order to provide directions";
+    public static final int MAP_STYLE_THRESHOLD = 5000;
     private GoogleMap mMap;
 
     LocationManager locationManager;
     LocationListener locationListener;
     Route activeRoute;
     Marker userMarker;
+
+    SensorManager sensorManager;
+    Sensor lightSensor;
+    SensorEventListener lightSensorListener;
+
+    private boolean mapLight = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +67,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListenerHandle();
+        
+        sensorManager = (SensorManager) getSystemService(Service.SENSOR_SERVICE);
+        lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
         startLocationService();
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_LIGHT && mMap != null) {
+            if (event.values[0] > 5000 && !mapLight) {
+                Log.i(">MAPS", "LIGHT MAP " + event.values[0]);
+                mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapsActivity.this, R.raw.map_light_style));
+                mapLight = true;
+            } else if (event.values[0] <= 5000 && mapLight) {
+                Log.i(">MAPS", "DARK MAP " + event.values[0]);
+                mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapsActivity.this, R.raw.map_dark_style));
+                mapLight = false;
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     private void startLocationService() {
@@ -89,6 +136,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         Integer i = 0;
+
+        if (mapLight) {
+            mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_light_style));
+        }
 
         for (Point point : activeRoute.getPoints()) {
             LatLng location = new LatLng(point.getLatitude(), point.getLongitude());
