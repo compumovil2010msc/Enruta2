@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser currentUser)
     {
         if (currentUser != null /*&& user != null && !user.isEmpty()*/) {
-            saveEmailInSharedPreferences();
             Intent intent = new Intent(this, DrawerActivity.class);
             intent.putExtra("user", currentUser.getEmail());
             startActivity(intent);
@@ -138,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.d(ENRUTADOS_LOG, "signInWithEmail:success");
+                    saveEmailInSharedPreferences();
                     FirebaseUser user = mAuth.getCurrentUser();
                     updateUI(user);
                 } else {
