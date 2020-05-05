@@ -29,19 +29,37 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.maps.android.SphericalUtil;
 
+import org.json.JSONArray;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.Writer;
+import java.util.Date;
+
+import co.edu.javeriana.enrutados.maps.helpers.FetchURL;
+import co.edu.javeriana.enrutados.maps.helpers.TaskLoadedCallback;
+import co.edu.javeriana.enrutados.model.LocationLog;
 import co.edu.javeriana.enrutados.model.Point;
 import co.edu.javeriana.enrutados.model.Route;
 
 import static co.edu.javeriana.enrutados.Utils.*;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener, GoogleMap.OnMarkerClickListener, TaskLoadedCallback {
 
     public static final int REQUEST_CODE = 1;
+    public static final int REQUEST_CODE_STORAGE = 2;
     public static final String REQUEST_REASON = "Location required in order to provide directions";
     public static final int MAP_STYLE_THRESHOLD = 5000;
+    public static final String LOG_ENRUTADOS = ">enrutados";
+    public static final String LOCATIONS_JSON = "locations.json";
+    public static final String REQUEST_EXTERNAL_STORAGE_REASON = "Permission needed for saving current location";
     private GoogleMap mMap;
+    private JSONArray localizaciones = new JSONArray();
 
     LocationManager locationManager;
     LocationListener locationListener;
@@ -51,6 +69,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     SensorManager sensorManager;
     Sensor lightSensor;
     SensorEventListener lightSensorListener;
+
+    Polyline currentPolyline;
 
     private boolean mapLight = true;
 
@@ -67,7 +87,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListenerHandle();
-        
+
         sensorManager = (SensorManager) getSystemService(Service.SENSOR_SERVICE);
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
@@ -77,11 +97,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_LIGHT && mMap != null) {
-            if (event.values[0] > 5000 && !mapLight) {
+            if (event.values[0] > MAP_STYLE_THRESHOLD && !mapLight) {
                 Log.i(">MAPS", "LIGHT MAP " + event.values[0]);
                 mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapsActivity.this, R.raw.map_light_style));
                 mapLight = true;
-            } else if (event.values[0] <= 5000 && mapLight) {
+            } else if (event.values[0] <= MAP_STYLE_THRESHOLD && mapLight) {
                 Log.i(">MAPS", "DARK MAP " + event.values[0]);
                 mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapsActivity.this, R.raw.map_dark_style));
                 mapLight = false;
@@ -117,8 +137,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            if (checkForPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+            switch (requestCode) {
+                case REQUEST_CODE:
+                    if (checkForPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                    }
+                    break;
             }
         }
     }
@@ -141,6 +165,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_light_style));
         }
 
+        mMap.setOnMarkerClickListener(this);
+
         for (Point point : activeRoute.getPoints()) {
             LatLng location = new LatLng(point.getLatitude(), point.getLongitude());
             MarkerOptions makerOptions = new MarkerOptions().position(location).title(point.getName());
@@ -157,6 +183,86 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    private void logLocation() {
+        if (!checkForPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Log.i(LOG_ENRUTADOS, "Sin permisos para almacenar en external storage");
+            requestPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE, REQUEST_EXTERNAL_STORAGE_REASON, REQUEST_CODE_STORAGE);
+            return;
+        }
+
+        LocationLog log = new LocationLog(
+                String.valueOf(userMarker.getPosition().latitude),
+                String.valueOf(userMarker.getPosition().longitude),
+                (new Date(System.currentTimeMillis())).toString()
+        );
+
+        Writer output = null;
+        String filename = LOCATIONS_JSON;
+        localizaciones.put(log.toJSON());
+
+        try {
+            File file = new File(getBaseContext().getExternalFilesDir(null), filename);
+            Log.i(LOG_ENRUTADOS, "Ubicacion del archivo: " + file);
+            output = new BufferedWriter(new FileWriter(file));
+            output.write(localizaciones.toString());
+            Log.i(LOG_ENRUTADOS, localizaciones.toString());
+            output.close();
+        } catch (Exception e ) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onTaskDone(Object... values) {
+        if (currentPolyline != null)
+            currentPolyline.remove();
+
+        Log.i(LOG_ENRUTADOS, "Se completo la consulta al API de Google");
+
+        currentPolyline = mMap.addPolyline((PolylineOptions) values[0]);
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return drawRouteFromUserMarker(marker);
+    }
+
+    public boolean drawRouteFromUserMarker(Marker marker)
+    {
+        if (userMarker == null || userMarker == marker)
+            return false;
+
+        new FetchURL(MapsActivity.this)
+                .execute(
+                        getUrl(
+                                userMarker.getPosition(),
+                                marker.getPosition(),
+                                "driving"),
+                        "driving"
+                );
+
+        return false;
+    }
+
+    private String getUrl(LatLng origin, LatLng dest, String directionMode) {
+        // Origin of route
+        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
+        // Destination of route
+        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
+        // Mode
+        String mode = "mode=" + directionMode;
+        // Building the parameters to the web service
+        String parameters = str_origin + "&" + str_dest + "&" + mode;
+        // Output format
+        String output = "json";
+        // Building the url to the web service
+        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + getString(R.string.google_maps_key);
+
+        Log.i(LOG_ENRUTADOS, "URL path: " + url);
+
+        return url;
+    }
+
     private class LocationListenerHandle implements LocationListener {
 
         @Override
@@ -170,6 +276,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 userMarker.remove();
 
             userMarker = mMap.addMarker(new MarkerOptions().position(userLatLng).title("You are here").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+            logLocation();
+
+            if (currentPolyline != null)
+                currentPolyline.remove();
+
         }
 
         @Override
