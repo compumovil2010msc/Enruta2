@@ -77,6 +77,7 @@ public class DrawerActivity extends AppCompatActivity {
                 editor.putString(getString(R.string.preference_user_key), null);
                 editor.commit();
                 Intent intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra("logout", true);
                 startActivity(intent);
                 return true;

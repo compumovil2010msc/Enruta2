@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -41,7 +42,8 @@ public class AddEvidenceActivity extends AppCompatActivity {
         buttonAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(v.getContext(), GalleryActivity.class);
+                startActivity(intent);
             }
         });
         buttonAddDocument.setOnClickListener(new View.OnClickListener() {

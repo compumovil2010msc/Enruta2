@@ -22,12 +22,13 @@ public class Utils {
         int requestingPermission = ContextCompat.checkSelfPermission(context, permission);
         if (requestingPermission != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(context, permission)) {
-                ActivityCompat.requestPermissions(
-                        context,
-                        new String[]{permission},
-                        code
-                );
+                // Async notification
             }
+            ActivityCompat.requestPermissions(
+                    context,
+                    new String[]{permission},
+                    code
+            );
         }
     }
 }

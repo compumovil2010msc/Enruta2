@@ -8,6 +8,7 @@
     <string name="description">Descripción</string>
     <string name="end_date">Fecha de inicio: %s</string>
     <string name="error_empty_field">El campo no puede estar vacío</string>
+    <string name="error_image_not_selected">Selecciona una imagen o toma una foto primero</string>
     <string name="error_incorrect_login">Usuario o contraseña incorrectos</string>
     <string name="forgot_password">He olvidado mi contraseña</string>
     <string name="location_lat_long">%f, %f</string>
@@ -47,7 +48,13 @@
     <string name="documents">Documentos</string>
 
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_gallery">Adjuntar imagen</string>
     <string name="image">Imagen</string>
     <string name="document">Documento</string>
     <string name="location">Ubicación</string>
+    <string name="select_image">Seleccionar imagen</string>
+    <string name="camera">Camera</string>
+    <string name="save_image">Guardar imagen</string>
+    <string name="image_saved">Imagen almacenada exitosamente</string>
+
 </resources>
