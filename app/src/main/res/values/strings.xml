@@ -8,16 +8,20 @@
     <string name="description">Descripción</string>
     <string name="end_date">Fecha de inicio: %s</string>
     <string name="error_empty_field">El campo no puede estar vacío</string>
+    <string name="error_image_not_selected">Selecciona una imagen o toma una foto primero</string>
     <string name="error_incorrect_login">Usuario o contraseña incorrectos</string>
     <string name="forgot_password">He olvidado mi contraseña</string>
+    <string name="location_lat_long">%f, %f</string>
     <string name="login">Inicio</string>
     <string name="menu_alerts">Alertas</string>
     <string name="menu_home">Inicio</string>
     <string name="menu_transportation">Transporte</string>
     <string name="password">Contraseña</string>
     <string name="point_of_service">Punto</string>
-    <string name="preference_acc_key">USER_KEY</string>
+    <string name="preference_acc_key">ACC_KEY</string>
     <string name="preference_file_key">SHARED_KEY</string>
+    <string name="preference_lat_key">LAT_KEY</string>
+    <string name="preference_long_key">LONG_KEY</string>
     <string name="preference_user_key">USER_KEY</string>
     <string name="preference_acc_coord">COORDINATOR</string>
     <string name="preference_acc_tech">TECHNICIAN</string>
@@ -39,7 +43,18 @@
 
     <string name="home_second">Home Second</string>
     <string name="title_activity_tabbed">TabbedActivity</string>
+    <string name="title_add_evidence">Adjuntar evidencia</string>
     <string name="images">Imágenes</string>
     <string name="documents">Documentos</string>
+
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_gallery">Adjuntar imagen</string>
+    <string name="image">Imagen</string>
+    <string name="document">Documento</string>
+    <string name="location">Ubicación</string>
+    <string name="select_image">Seleccionar imagen</string>
+    <string name="camera">Camera</string>
+    <string name="save_image">Guardar imagen</string>
+    <string name="image_saved">Imagen almacenada exitosamente</string>
+
 </resources>

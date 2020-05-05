@@ -21,13 +21,14 @@ public class Utils {
     public static void requestPermission(Activity context, String permission, String reason, int code) {
         int requestingPermission = ContextCompat.checkSelfPermission(context, permission);
         if (requestingPermission != PackageManager.PERMISSION_GRANTED) {
-            if (!ActivityCompat.shouldShowRequestPermissionRationale(context, permission)) {
-                ActivityCompat.requestPermissions(
-                        context,
-                        new String[]{permission},
-                        code
-                );
+            if (ActivityCompat.shouldShowRequestPermissionRationale(context, permission)) {
+                // Async notification
             }
+            ActivityCompat.requestPermissions(
+                    context,
+                    new String[]{permission},
+                    code
+            );
         }
     }
 }
