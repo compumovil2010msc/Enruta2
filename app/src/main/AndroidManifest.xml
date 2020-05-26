@@ -21,9 +21,16 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.AddRouteActivity"
+            android:label="Ruta nueva"
+            android:parentActivityName=".CoordinatorActivity"/>
+        <activity
+            android:name=".CoordinatorActivity"
+            android:label="Cordinador" />
+        <activity
             android:name=".GalleryActivity"
             android:label=""
-            android:parentActivityName=".AddEvidenceActivity"/>
+            android:parentActivityName=".AddEvidenceActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -38,8 +45,8 @@
 
         <activity
             android:name=".MapsActivity"
-            android:parentActivityName=".DrawerActivity"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps"
+            android:parentActivityName=".DrawerActivity" />
         <activity
             android:name=".AddEvidenceActivity"
             android:label="@string/title_add_evidence"

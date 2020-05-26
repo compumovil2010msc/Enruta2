@@ -56,5 +56,8 @@
     <string name="camera">Camera</string>
     <string name="save_image">Guardar imagen</string>
     <string name="image_saved">Imagen almacenada exitosamente</string>
+    <string name="route_name">Nombre de la ruta</string>
+    <string name="tech_mail">Email del técnico</string>
+    <string name="create">Crear</string>
 
 </resources>

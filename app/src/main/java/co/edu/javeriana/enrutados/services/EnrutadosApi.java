@@ -5,7 +5,10 @@ import java.util.List;
 import co.edu.javeriana.enrutados.model.Route;
 import co.edu.javeriana.enrutados.model.User;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface EnrutadosApi {
@@ -30,5 +33,11 @@ public interface EnrutadosApi {
 
     @GET("technicians/{email}/active-route")
     Call<Route> getTechnicianActiveRoute(@Path("email") String email);
+
+    @POST("routes")
+    Call<Route> createRoute(@Body Route route);
+
+    @PUT("routes/{email}/routes/{id}")
+    Call<Route> setTech(@Path("email") String email, @Path("id") long id);
 
 }
